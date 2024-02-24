@@ -7,6 +7,7 @@ import math
 
 class PID_Controller:
 
+    #global variables, not self]
     __k_p = 0
     __k_i = 0
     __k_d = 0
@@ -46,8 +47,7 @@ class PID_Controller:
     def __init__ (self,k_p, k_i, k_d):
         self.k_p = k_p
         self.k_i = k_i
-        self.k_d = k_d
-        self.angle_wrap = 0   
+        self.k_d = k_d 
         self.i_min = -1.0
         self.i_max = 1.0
         self.ctrl_val_min = -1.0
