@@ -1,4 +1,6 @@
 #import max for fmod/min/etc. recommend import only necessay functions
+#Re- Written based off of pid_contoller.cpp by Matthew Smith
+
 import math
 
 
@@ -151,10 +153,11 @@ class PID_Controller:
 #END OF CLASS DEFINITION
 #TESTING BELOW
 
-
+"""
 controller = PID_Controller(0.0, 0.0, 0.0)
 
 ctrl_val_error_first, ctrl_val_error_second = controller.update(190.0, 3.0)
 
 print(ctrl_val_error_first)   
 print(ctrl_val_error_second)
+"""
