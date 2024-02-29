@@ -114,15 +114,15 @@ class PID_Controller:
     
 
     #test method to get values
-    # def getStatus(self):
+    def getStatus(self):
 
-    #     print( "k_p: " + str(self.k_p))
-    #     print( "k_i: " + str(self.k_i))
-    #     print( "k_d: " + str(self.k_d))
-    #     print( "integral: " +  str(self.integral))
-    #     print( "previous_error: " +  str(self.previous_error))
-    #     print( "control_value: " + str(self.curr_ctrl_val))
-    #     pass
+        print( "k_p: " + str(self.k_p))
+        print( "k_i: " + str(self.k_i))
+        print( "k_d: " + str(self.k_d))
+        print( "integral: " +  str(self.integral))
+        print( "previous_error: " +  str(self.previous_error))
+        print( "control_value: " + str(self.curr_ctrl_val))
+        pass
 
 
 #END OF CLASS DEFINITION
