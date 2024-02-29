@@ -1,9 +1,8 @@
 #import max for fmod/min/etc. recommend import only necessay functions
 #Re- Written based off of pid_contoller.cpp by Matthew Smith
 
-import math
-
-
+#fmod used, only import instead of full library
+from math import fmod
 
 class PID_Controller:
 
@@ -13,10 +12,13 @@ class PID_Controller:
         pass
 
     #constructor with all variables
-    def __init__(self,k_p, k_i,k_d,angle_wrap,
-                i_min, i_max, ctrl_val_min,
-                ctrl_val_max, 
-                ctrl_val_offset):
+    #set default values for incomplete constructors
+    #k_p,k_i,k_d required
+
+    def __init__(self,k_p, k_i,k_d,angle_wrap = False,
+                 i_min = -1.0, i_max = 1.0, ctrl_val_min = -1.0,
+                ctrl_val_max = 1.0, 
+                ctrl_val_offset = 0.0):
         #initialize values
         self.k_p = k_p
         self.k_i = k_i
@@ -29,22 +31,7 @@ class PID_Controller:
         self.angle_wrap = angle_wrap
         self.integral = 0.0                       # Keeps track of integral over time
         self.previous_error = 0.0                 # Helps in derivative calculation
-        pass
-
-
-    #initialize k_p,k_i,k_d
-    def __init__ (self,k_p, k_i, k_d):
-        self.k_p = k_p
-        self.k_i = k_i
-        self.k_d = k_d 
-        self.i_min = -1.0
-        self.i_max = 1.0
-        self.ctrl_val_min = -1.0
-        self.ctrl_val_max  = 1.0
-        self.ctrl_val_offset = 0.0
-        self.angle_wrap = 0
-        self.integral = 0.0                       # Keeps track of integral over time
-        self.previous_error = 0.0                 # Helps in derivative calculation
+        self.curr_ctrl_val = 0.0;
         pass
 
 
@@ -95,7 +82,7 @@ class PID_Controller:
 
         if(self.angle_wrap):
 
-            error = math.fmod(error,360)
+            error = fmod(error,360)
             
             if (error > 180):
                 error -= (2*180)
@@ -126,27 +113,32 @@ class PID_Controller:
         return ctrl_val_first,ctrl_val_second
     
 
-    def getStatus(self):
+    #test method to get values
+    # def getStatus(self):
 
-        """ curretnly in C++
-        // cout << "k_p: " << this->k_p << endl
-        // cout << "k_i: " << this->k_i << endl
-        // cout << "k_d: " << this->k_d << endl
-        // cout << "integral: " << this->integral << endl
-        // cout << "previous_error: " << this->previous_error << endl
-        // cout << "control_value: " << this->curr_ctrl_val << endl
-        """
+    #     print( "k_p: " + str(self.k_p))
+    #     print( "k_i: " + str(self.k_i))
+    #     print( "k_d: " + str(self.k_d))
+    #     print( "integral: " +  str(self.integral))
+    #     print( "previous_error: " +  str(self.previous_error))
+    #     print( "control_value: " + str(self.curr_ctrl_val))
+    #     pass
 
-        pass
 
 #END OF CLASS DEFINITION
 #TESTING BELOW
 
-"""
-controller = PID_Controller(0.0, 0.0, 0.0)
 
-ctrl_val_error_first, ctrl_val_error_second = controller.update(190.0, 3.0)
 
-print(ctrl_val_error_first)   
-print(ctrl_val_error_second)
-"""
+# controller = PID_Controller(1.0, 1.0, 1.0)
+
+# controller.getStatus()
+
+
+# ctrl_val_error_first, ctrl_val_error_second = controller.update(200.0, 3.0)
+
+# controller.getStatus()
+
+
+# print(ctrl_val_error_first)   
+# print(ctrl_val_error_second)
