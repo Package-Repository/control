@@ -8,7 +8,6 @@ class PID_Controller:
 
 
     def __init__(self):        
-
         pass
 
     #constructor with all variables
@@ -123,6 +122,9 @@ class PID_Controller:
         print( "previous_error: " +  str(self.previous_error))
         print( "control_value: " + str(self.curr_ctrl_val))
         pass
+
+
+
 
 
 #END OF CLASS DEFINITION
